@@ -18,7 +18,7 @@ def resgistrarCliente(request):
             nombre=nombre,
             apellido=apellido,
             edad=edad,
-            fecha=fecha,
+            fecha_nacimiento=fecha,
             descripcion=descripcion,
             imagen=imagen
         )
