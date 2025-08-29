@@ -7,12 +7,12 @@ def Compra(request):
 
 def resgistrarCliente(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre'),
-        apellido = request.POST.get('apellido'),
-        edad = request.POST.get('edad'),
-        fecha = request.POST.get('fecha'),
-        descripcion = request.POST.get('descripcion'),
-        imagen = request.FILES.get('imagen'),
+        nombre = request.POST.get('nombre')
+        apellido = request.POST.get('apellido')
+        edad = request.POST.get('edad')
+        fecha = request.POST.get('fecha')
+        descripcion = request.POST.get('descripcion')
+        imagen = request.FILES.get('imagen')
     
         registro = Registro(
             nombre=nombre,
