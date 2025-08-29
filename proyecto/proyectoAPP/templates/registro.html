@@ -27,7 +27,8 @@
     <body>
 <h1 class="titulo">Registro</h1>
 
-        <form class="formulario">
+        <form class="formulario" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre">
 
@@ -47,8 +48,7 @@
             <input type="file" id="imagen" name="imagen">
 
             <button type="submit">Enviar</button>
-
-            
+  
         </form>
 
 
