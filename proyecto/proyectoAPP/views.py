@@ -23,6 +23,6 @@ def resgistrarCliente(request):
             imagen=imagen
         )
         registro.save()
-        return redirect('Compra')
+        return redirect('catalogo')
     
     return render(request, 'registro.html')
