@@ -18,6 +18,8 @@ from django.urls import path
 from proyectoAPP import views
 
 urlpatterns = [
-    path('catalogo/', views.Compra, name='catalogo'),
-    path('registro/', views.resgistrarCliente, name='registro'),
+    path('', views.inicio, name='inicio'),
+    path('login/', views.login_view, name='login'),
+    path('registro/', views.registrarCliente, name='registro'),
+    path('logout/', views.salir, name='logout'),
 ]
