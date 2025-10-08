@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar">
+            <div class="asd">
+                <h3>Opciones</h3>
+                <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
+                <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
+                <a class="nav-link" href="#">Reportes</a>
+                <a class="nav-link" href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Gestión de Productos</h2>
+
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>${{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>
+                        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-sm btn-black">Editar</a>
+                        <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-sm btn-gray" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No hay productos registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

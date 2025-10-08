@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <title>Registro</title>
+</head>
+<body>	
+
+    <div class="d-flex">
+
+        <div class="sidebar">
+            <div class="asd">
+                <h3>Opciones</h3>
+                <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
+                <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
+                <a class="nav-link" href="#">Reportes</a>
+                <a class="nav-link" href="#"></a>
+            </div>
+        </div>
+
+
+        <div class="content p-5 flex-grow-1">
+            <h2 class="mb-4">Registrar Usuario</h2>
+
+
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input type="text" name="apellido" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input type="text" name="usuario" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Rol</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rol" value="admin" required>
+                        <label class="form-check-label">Administrador</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rol" value="cajero" required>
+                        <label class="form-check-label">Cajero</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Registrar</button>
+                <a href="{% url 'inicio' %}" class="btn btn-outline-dark">Cancelar</a>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
