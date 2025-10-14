@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.hashers import make_password, check_password
 
 class Usuario(models.Model):
@@ -30,3 +31,17 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"{self.nombre} - {self.categoria}"
+=======
+
+# Create your models here.
+class Registro(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    password = models.CharField(max_length=128) 
+    fecha_nacimiento = models.DateField()
+    descripcion = models.TextField()
+    imagen = models.ImageField(upload_to='imagenes/', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+>>>>>>> a9705f429470718141189b95948f86ca60e41f56
