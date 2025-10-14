@@ -55,9 +55,6 @@ def login_usuario(request):
             messages.error(request, 'Contraseña incorrecta.')
             return redirect('login')
 
-    return render(request, 'login.html')
-
-
 # Logout
 def logout_usuario(request):
     # Eliminar todos los datos de sesión
@@ -126,4 +123,3 @@ def gestion_productos(request):
     # Mostrar productos
     productos = Producto.objects.all()
     return render(request, 'gproductos.html', {'productos': productos})
-
