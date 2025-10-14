@@ -123,3 +123,4 @@ def gestion_productos(request):
     # Mostrar productos
     productos = Producto.objects.all()
     return render(request, 'gproductos.html', {'productos': productos})
+
