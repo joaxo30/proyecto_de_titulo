@@ -19,8 +19,8 @@ from proyectoAPP import views
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
-    path('login/', views.login_view, name='login'),
-    path('registro/', views.registrarCliente, name='registro'),
-    path('logout/', views.salir, name='logout'),
+    path('login/', views.login_usuario, name='login'),
+    path('registro/', views.registro_usuario, name='registro'),
+    path('logout/', views.logout, name='logout'),
     path('gproductos/', views.gproductos, name='gproductos'),
 ]

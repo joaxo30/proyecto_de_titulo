@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Usuario, Producto
 
+def inicio(request):
+    return render(request, 'inicio.html', {
+        'usuario_nombre': request.session.get('usuario_nombre')
+    })
+
 def registro_usuario(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
@@ -56,7 +61,7 @@ def login_usuario(request):
             return redirect('login')
 
 # Logout
-def logout_usuario(request):
+def logout(request):
     # Eliminar todos los datos de sesión
     request.session.flush()
     messages.success(request, 'Has cerrado sesión correctamente.')
@@ -80,7 +85,7 @@ def admin_requerido(func):
 
 @login_requerido
 @admin_requerido
-def gestion_productos(request):
+def gproductos(request):
     # AGREGAR PRODUCTO
     if request.method == 'POST' and request.POST.get('action') == 'add':
         nombre = request.POST.get('nombre')
