@@ -59,6 +59,7 @@ def login_usuario(request):
         else:
             messages.error(request, 'Contraseña incorrecta.')
             return redirect('login')
+    return render(request, 'login.html')
 
 # Logout
 def logout(request):
