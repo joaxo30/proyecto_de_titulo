@@ -16,12 +16,19 @@
     <nav class="navbar">
         <a href="#" class="brand">Market</a>
         <ul class="menu">
-            <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
             <li><a href="#funciones">Funciones</a></li>
             <li><a href="#contacto">Contacto</a></li>
-            <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
-            <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
-            <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
+
+            {% if usuario_nombre %}
+                <li><span style="color:white; margin-right:10px;">👋 {{ usuario_nombre }}</span></li>
+                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        
+                <li><a href="{% url 'registro' %}">Registrar Usuarios</a></li>
+                <li><a href="{% url 'gproductos' %}">Administrar Productos</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+            {% endif %}
         </ul>
     </nav>
     <br><br>
