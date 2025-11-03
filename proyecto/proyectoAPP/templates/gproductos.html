@@ -5,10 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-
+    <div class="sidebar">
+        <div class="asd">
+            <h3>Opciones</h3>
+            <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+            <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
+            <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
+            <a class="nav-link" href="#">Reportes</a>
+        </div>
+    </div>
 <div class="container mt-4">
     <h2 class="mb-4">Gestión de Productos</h2>
 
