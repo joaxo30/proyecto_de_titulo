@@ -10,22 +10,18 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="sidebar">
-            <div class="asd">
-                <h3>Opciones</h3>
-                <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
-                <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
-                <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
-                <a class="nav-link" href="#">Reportes</a>
-                <a class="nav-link" href="#"></a>
-            </div>
+        <div class="asd">
+            <h3>Opciones</h3>
+            <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+            <a class="nav-link" href="{% url 'registro' %}">Registrar Usuarios</a>
+            <a class="nav-link" href="{% url 'gproductos' %}">Administrar Productos</a>
+            <a class="nav-link" href="#">Reportes</a>
         </div>
     </div>
 
     <div class="content">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2>Gestión de Productos</h2>
-
         </div>
 
         {% if messages %}
@@ -34,6 +30,7 @@
             {% endfor %}
         {% endif %}
 
+        <!-- Formulario agregar -->
         <div class="card mb-4 shadow-sm">
             <div class="card-header bg-dark text-white">
                 <strong>Agregar nuevo producto</strong>
@@ -67,8 +64,9 @@
             </div>
         </div>
 
-        <table class="table">
-            <thead>
+        <!-- Tabla -->
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -87,8 +85,19 @@
                     <td>${{ producto.precio }}</td>
                     <td>{{ producto.stock }}</td>
                     <td>
-                        <a href="{% url 'gproductos' %}" class="btn btn-sm btn-black">Editar</a>
-                        <a href="{% url 'gproductos' %}" class="btn btn-sm btn-gray" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+                        <!-- Botón Editar -->
+                        <button class="btn btn-sm btn-warning" 
+                                onclick="editarProducto('{{ producto.id }}', '{{ producto.nombre }}', '{{ producto.categoria }}', '{{ producto.precio }}', '{{ producto.stock }}')">
+                            Editar
+                        </button>
+
+                        <!-- Botón Eliminar -->
+                        <form method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este producto?');">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 {% empty %}
@@ -99,5 +108,49 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal editar -->
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" id="edit_id" name="producto_id">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title">Editar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nombre</label>
+                        <input type="text" id="edit_nombre" name="nombre" class="form-control mb-2" required>
+                        <label>Categoría</label>
+                        <input type="text" id="edit_categoria" name="categoria" class="form-control mb-2" required>
+                        <label>Precio</label>
+                        <input type="number" step="0.01" id="edit_precio" name="precio" class="form-control mb-2" required>
+                        <label>Stock</label>
+                        <input type="number" id="edit_stock" name="stock" class="form-control" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-dark">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        function editarProducto(id, nombre, categoria, precio, stock) {
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_nombre').value = nombre;
+            document.getElementById('edit_categoria').value = categoria;
+            document.getElementById('edit_precio').value = precio;
+            document.getElementById('edit_stock').value = stock;
+            var modal = new bootstrap.Modal(document.getElementById('editarModal'));
+            modal.show();
+        }
+    </script>
 </body>
 </html>
