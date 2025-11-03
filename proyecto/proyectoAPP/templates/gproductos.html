@@ -87,8 +87,8 @@
                     <td>${{ producto.precio }}</td>
                     <td>{{ producto.stock }}</td>
                     <td>
-                        <a href="{% url 'gproductos' producto.id %}" class="btn btn-sm btn-black">Editar</a>
-                        <a href="{% url 'gproductos' producto.id %}" class="btn btn-sm btn-gray" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
+                        <a href="{% url 'gproductos' %}" class="btn btn-sm btn-black">Editar</a>
+                        <a href="{% url 'gproductos' %}" class="btn btn-sm btn-gray" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</a>
                     </td>
                 </tr>
                 {% empty %}
