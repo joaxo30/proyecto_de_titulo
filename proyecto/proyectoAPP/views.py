@@ -66,7 +66,7 @@ def logout(request):
     # Eliminar todos los datos de sesión
     request.session.flush()
     messages.success(request, 'Has cerrado sesión correctamente.')
-    return redirect('login')
+    return redirect('inicio')
 
 def login_requerido(func):
     def wrapper(request, *args, **kwargs):
